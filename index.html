@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="de">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kuklinski Fotografie</title>
+    <style>
+        body {
+            font-family: 'Helvetica Neue', Arial, sans-serif;
+            background-color: #1a1a1a;
+            color: #ffffff;
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            text-align: center;
+        }
+        .container {
+            flex: 1;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            max-width: 900px;
+            padding: 40px 20px;
+        }
+        h1 {
+            font-weight: 200;
+            letter-spacing: 8px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+            font-size: 2.5em;
+        }
+        p.subtitle {
+            color: #888;
+            margin-bottom: 60px;
+            font-style: italic;
+            letter-spacing: 2px;
+        }
+        .links {
+            display: flex;
+            justify-content: center;
+            gap: 50px;
+            flex-wrap: wrap;
+        }
+        .profile {
+            transition: transform 0.4s ease;
+        }
+        .profile:hover {
+            transform: translateY(-10px);
+        }
+        a.insta-button {
+            color: #ffffff;
+            text-decoration: none;
+            border: 1px solid rgba(255,255,255,0.3);
+            padding: 18px 30px;
+            display: inline-block;
+            min-width: 220px;
+            transition: all 0.3s ease;
+            letter-spacing: 2px;
+            font-size: 0.9em;
+        }
+        a.insta-button:hover {
+            background-color: #ffffff;
+            color: #1a1a1a;
+            border-color: #ffffff;
+        }
+        .name {
+            display: block;
+            margin-top: 20px;
+            font-weight: 300;
+            letter-spacing: 2px;
+            color: #ccc;
+        }
+        /* Footer & Rechtliches */
+        footer {
+            padding: 30px;
+            font-size: 11px;
+            color: #444;
+            letter-spacing: 1px;
+        }
+        footer a {
+            color: #666;
+            text-decoration: none;
+            margin: 0 10px;
+            transition: color 0.3s;
+        }
+        footer a:hover {
+            color: #fff;
+        }
+        .legal-box {
+            display: none;
+            margin-top: 40px;
+            line-height: 1.6;
+            border-top: 1px solid #333;
+            padding-top: 30px;
+            text-align: left;
+            font-size: 13px;
+            color: #aaa;
+            max-width: 700px;
+        }
+        .legal-box:target {
+            display: block;
+        }
+        h3 { color: #fff; font-weight: 400; margin-top: 25px; }
+        .close-link { color: #888; font-style: italic; display: block; margin-top: 20px; }
+    </style>
+</head>
+<body>
+
+    <div class="container">
+        <h1>Kuklinski</h1>
+        <p class="subtitle">Fotografie & Perspektiven</p>
+
+        <div class="links">
+            <div class="profile">
+                <a href="https://www.instagram.com/juergen.kuklinski.fotografie" target="_blank" class="insta-button">
+                    INSTAGRAM
+                </a>
+                <span class="name">Jürgen Kuklinski</span>
+            </div>
+
+            <div class="profile">
+                <a href="https://www.instagram.com/corina.kuklinski.fotografie" target="_blank" class="insta-button">
+                    INSTAGRAM
+                </a>
+                <span class="name">Corina Kuklinski</span>
+            </div>
+        </div>
+
+        <div id="legal" class="legal-box">
+            <h3>Impressum</h3>
+            <p>
+                Angaben gemäß § 5 TMG:<br><br>
+                Jürgen & Corina Kuklinski<br>
+                Rhönstr. 21<br>
+                70469 Stuttgart<br><br>
+                <strong>Kontakt:</strong><br>
+                E-Mail: juergen@kuklinski.de<br>
+                <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
+                Jürgen & Corina Kuklinski<br>
+            </p>
+
+            <h3>Datenschutzerklärung</h3>
+            <p>
+                <strong>1. Datenschutz auf einen Blick</strong><br>
+                Diese Website dient lediglich als Landingpage mit Verlinkungen zu unseren Instagram-Profilen. Wir selbst erheben, speichern oder verarbeiten auf dieser Website keine personenbezogenen Daten von Ihnen.
+            </p>
+            <p>
+                <strong>2. Hosting</strong><br>
+                Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Personenbezogene Daten (wie IP-Adressen), die beim Aufruf der Seite automatisch durch den Server erfasst werden, liegen im Verantwortungsbereich des Hosters.
+            </p>
+            <p>
+                <strong>3. Externe Links (Instagram)</strong><br>
+                Sobald Sie auf die Instagram-Buttons klicken, verlassen Sie unsere Website. Instagram (Meta Platforms Ireland Limited) erhebt dann eigene Daten. Wir haben keinen Einfluss auf die Datenverarbeitung durch Instagram.
+            </p>
+            
+            <a href="#" class="close-link">× Bereich schließen</a>
+        </div>
+    </div>
+
+    <footer>
+        &copy; 2026 Kuklinski Fotografie | 
+        <a href="#legal">Impressum & Datenschutz</a>
+    </footer>
+
+</body>
+</html>
