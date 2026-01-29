@@ -138,14 +138,16 @@
         <div id="legal" class="legal-content">
             <h3>Impressum</h3>
             <p>
+                Angaben gemäß § 5 TMG:<br><br>
                 Jürgen & Corina Kuklinski<br>
-                Rhönstr. 21, 70469 Stuttgart<br><br>
+                Rhönstr. 21<br>
+                70469 Stuttgart<br><br>
                 <strong>Kontakt:</strong><br>
                 E-Mail: <a href="mailto:juergen@kuklinski.de" class="email-link">juergen@kuklinski.de</a>
             </p>
             <br>
             <h3>Datenschutz</h3>
-            <p>Diese Website dient rein zur Verlinkung unserer Profile. Es werden keine Nutzerdaten erhoben.</p>
+            <p>Diese Website dient lediglich als Landingpage mit Verlinkungen zu unseren Instagram-Profilen. Wir selbst erheben, speichern oder verarbeiten auf dieser Website keine personenbezogenen Daten von Ihnen.</p>
             <a href="#" class="close-link">× Bereich schließen</a>
         </div>
     </div>
@@ -156,16 +158,11 @@
 
     <script>
         window.onload = function() {
-            // Liste der Bilder (bg1.jpg bis bg10.jpg)
+            // Liste eurer 10 Bilder
             const images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 'bg6.jpg', 'bg7.jpg', 'bg8.jpg', 'bg9.jpg', 'bg10.jpg', 'bg11.jpg', 'bg12.jpg', 'bg13.jpg'];
-            
-            // Zufällige Auswahl
             const randomImage = images[Math.floor(Math.random() * images.length)];
-            
-            // Hintergrund setzen
             document.getElementById('dynamic-background').style.backgroundImage = 'url(' + randomImage + ')';
         };
     </script>
-
 </body>
 </html>
