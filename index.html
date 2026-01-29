@@ -12,21 +12,21 @@
             font-family: 'Helvetica Neue', Arial, sans-serif;
             background-color: #000;
             color: #ffffff;
-            height: 100vh;
+            min-height: 100vh;
             display: flex;
             flex-direction: column;
-            overflow: hidden;
+            align-items: center;
+            text-align: center;
         }
 
-        /* Hintergrundbild mit Weichzeichner und Abdunklung */
+        /* Hintergrundbild */
         .background-image {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            /* Platzhalterbild - kann durch eigenes Bild ersetzt werden */
             background: url('hintergrund.jpg') no-repeat center center/cover;
             filter: brightness(30%) blur(3px);
             z-index: -1;
-            transform: scale(1.05); /* Verhindert weiße Ränder durch den Blur */
+            transform: scale(1.05);
         }
 
         .container {
@@ -34,111 +34,90 @@
             display: flex;
             flex-direction: column;
             justify-content: center;
-            align-items: center;
-            padding: 20px;
-            text-align: center;
-            animation: fadeIn 1.5s ease-out;
+            max-width: 800px;
+            padding: 60px 20px;
+            animation: fadeIn 1.2s ease-out;
         }
 
         @keyframes fadeIn {
-            from { opacity: 0; transform: translateY(20px); }
-            to { opacity: 1; transform: translateY(0); }
+            from { opacity: 0; }
+            to { opacity: 1; }
         }
 
         h1 {
             font-weight: 200;
-            letter-spacing: 12px;
+            letter-spacing: 10px;
             text-transform: uppercase;
-            font-size: clamp(2rem, 8vw, 4rem);
-            margin-bottom: 10px;
+            font-size: clamp(1.8rem, 7vw, 3.5rem);
+            margin-bottom: 5px;
         }
 
         .subtitle {
-            color: rgba(255,255,255,0.6);
-            letter-spacing: 5px;
-            margin-bottom: 60px;
-            font-size: 0.9rem;
+            color: rgba(255,255,255,0.5);
+            letter-spacing: 4px;
+            margin-bottom: 50px;
+            font-size: 0.8rem;
             text-transform: uppercase;
         }
 
         .links {
             display: flex;
-            gap: 30px;
+            gap: 20px;
             flex-wrap: wrap;
             justify-content: center;
+            margin-bottom: 40px;
         }
 
         .btn {
             text-decoration: none;
             color: white;
             background: rgba(255, 255, 255, 0.05);
-            backdrop-filter: blur(10px); /* Glas-Effekt */
+            backdrop-filter: blur(10px);
             border: 1px solid rgba(255,255,255,0.1);
-            padding: 30px;
-            min-width: 300px;
+            padding: 25px;
+            min-width: 260px;
             display: flex;
             flex-direction: column;
             align-items: center;
-            gap: 15px;
-            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
+            gap: 12px;
+            transition: all 0.3s ease;
         }
 
         .btn:hover {
-            border-color: rgba(255,255,255,0.5);
+            border-color: rgba(255,255,255,0.6);
             background: rgba(255,255,255,0.1);
-            transform: translateY(-10px);
         }
 
-        .btn i {
-            font-size: 2rem;
-            opacity: 0.9;
+        .btn i { font-size: 1.8rem; }
+        .btn .name { font-weight: 500; letter-spacing: 1px; font-size: 0.9rem; }
+
+        /* Impressum Bereich (wie in Version 1) */
+        .legal-content {
+            display: none;
+            margin-top: 30px;
+            padding: 30px;
+            background: rgba(0,0,0,0.6);
+            border-top: 1px solid rgba(255,255,255,0.1);
+            text-align: left;
+            font-size: 13px;
+            line-height: 1.6;
+            color: #aaa;
         }
 
-        .btn .name {
-            font-weight: 500;
-            letter-spacing: 2px;
-            text-transform: uppercase;
-            font-size: 1rem;
+        .legal-content:target {
+            display: block;
         }
 
-        .btn .handle {
-            font-size: 0.75rem;
-            color: rgba(255,255,255,0.5);
-        }
+        .legal-content h3 { color: #fff; margin-bottom: 10px; font-weight: 400; }
+        .close-link { color: #fff; text-decoration: none; display: block; margin-top: 15px; font-style: italic; }
 
         footer {
-            padding: 30px;
+            padding: 40px;
             font-size: 11px;
-            color: rgba(255,255,255,0.4);
-            text-align: center;
-            letter-spacing: 1px;
+            color: rgba(255,255,255,0.3);
         }
 
         footer a { color: inherit; text-decoration: none; }
-        footer a:hover { color: #fff; }
-
-        /* Impressum Modal */
-        #legal:target { display: flex; }
-        .legal-overlay {
-            display: none;
-            position: fixed;
-            top: 0; left: 0; width: 100%; height: 100%;
-            background: rgba(0,0,0,0.95);
-            justify-content: center;
-            align-items: center;
-            z-index: 100;
-        }
-        .legal-content {
-            background: #111;
-            padding: 40px;
-            border: 1px solid #333;
-            max-width: 600px;
-            width: 90%;
-            text-align: left;
-        }
-        .legal-content h3 { margin-bottom: 20px; font-weight: 300; letter-spacing: 2px; }
-        .legal-content p { font-size: 0.9rem; color: #aaa; line-height: 1.6; margin-bottom: 10px; }
-        .close-btn { display: inline-block; margin-top: 20px; color: #fff; text-decoration: none; border-bottom: 1px solid #fff; padding-bottom: 2px; }
     </style>
 </head>
 <body>
@@ -153,23 +132,15 @@
             <a href="https://www.instagram.com/juergen.kuklinski.fotografie" target="_blank" class="btn">
                 <i class="fab fa-instagram"></i>
                 <span class="name">Jürgen Kuklinski</span>
-                <span class="handle">@juergen.kuklinski.fotografie</span>
             </a>
 
             <a href="https://www.instagram.com/corina.kuklinski.fotografie" target="_blank" class="btn">
                 <i class="fab fa-instagram"></i>
                 <span class="name">Corina Kuklinski</span>
-                <span class="handle">@corina.kuklinski.fotografie</span>
             </a>
         </div>
-    </div>
 
-    <footer>
-        <a href="#legal">IMPRESSUM & DATENSCHUTZ</a> | &copy; 2026 KUKLINSKI
-    </footer>
-
-    <div id="legal" class="legal-overlay">
-        <div class="legal-content">
+        <div id="legal" class="legal-content">
             <h3>Impressum</h3>
             <p>
                 Angaben gemäß § 5 TMG:<br><br>
@@ -195,9 +166,13 @@
                 <strong>3. Externe Links (Instagram)</strong><br>
                 Sobald Sie auf die Instagram-Buttons klicken, verlassen Sie unsere Website. Instagram (Meta Platforms Ireland Limited) erhebt dann eigene Daten. Wir haben keinen Einfluss auf die Datenverarbeitung durch Instagram.
             </p>
-            <a href="#" class="close-btn">Schließen</a>
+            <a href="#" class="close-link">× Bereich schließen</a>
         </div>
     </div>
+
+    <footer>
+        <a href="#legal">Impressum & Datenschutz</a> | &copy; 2026 KUKLINSKI
+    </footer>
 
 </body>
 </html>
