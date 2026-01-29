@@ -4,132 +4,172 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuklinski Fotografie</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+        
         body {
             font-family: 'Helvetica Neue', Arial, sans-serif;
-            background-color: #1a1a1a;
+            background-color: #000;
             color: #ffffff;
-            margin: 0;
+            height: 100vh;
             display: flex;
             flex-direction: column;
-            justify-content: center;
-            align-items: center;
-            min-height: 100vh;
-            text-align: center;
+            overflow: hidden;
         }
+
+        /* Hintergrundbild mit Weichzeichner und Abdunklung */
+        .background-image {
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            /* Platzhalterbild - kann durch eigenes Bild ersetzt werden */
+            background: url('hintergrund.jpg') no-repeat center center/cover;
+            filter: brightness(30%) blur(3px);
+            z-index: -1;
+            transform: scale(1.05); /* Verhindert weiße Ränder durch den Blur */
+        }
+
         .container {
             flex: 1;
             display: flex;
             flex-direction: column;
             justify-content: center;
-            max-width: 900px;
-            padding: 40px 20px;
+            align-items: center;
+            padding: 20px;
+            text-align: center;
+            animation: fadeIn 1.5s ease-out;
         }
+
+        @keyframes fadeIn {
+            from { opacity: 0; transform: translateY(20px); }
+            to { opacity: 1; transform: translateY(0); }
+        }
+
         h1 {
             font-weight: 200;
-            letter-spacing: 8px;
+            letter-spacing: 12px;
             text-transform: uppercase;
+            font-size: clamp(2rem, 8vw, 4rem);
             margin-bottom: 10px;
-            font-size: 2.5em;
         }
-        p.subtitle {
-            color: #888;
+
+        .subtitle {
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 5px;
             margin-bottom: 60px;
-            font-style: italic;
-            letter-spacing: 2px;
+            font-size: 0.9rem;
+            text-transform: uppercase;
         }
+
         .links {
             display: flex;
-            justify-content: center;
-            gap: 50px;
+            gap: 30px;
             flex-wrap: wrap;
+            justify-content: center;
         }
-        .profile {
-            transition: transform 0.4s ease;
+
+        .btn {
+            text-decoration: none;
+            color: white;
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(10px); /* Glas-Effekt */
+            border: 1px solid rgba(255,255,255,0.1);
+            padding: 30px;
+            min-width: 300px;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.4s cubic-bezier(0.165, 0.84, 0.44, 1);
         }
-        .profile:hover {
+
+        .btn:hover {
+            border-color: rgba(255,255,255,0.5);
+            background: rgba(255,255,255,0.1);
             transform: translateY(-10px);
         }
-        a.insta-button {
-            color: #ffffff;
-            text-decoration: none;
-            border: 1px solid rgba(255,255,255,0.3);
-            padding: 18px 30px;
-            display: inline-block;
-            min-width: 220px;
-            transition: all 0.3s ease;
+
+        .btn i {
+            font-size: 2rem;
+            opacity: 0.9;
+        }
+
+        .btn .name {
+            font-weight: 500;
             letter-spacing: 2px;
-            font-size: 0.9em;
+            text-transform: uppercase;
+            font-size: 1rem;
         }
-        a.insta-button:hover {
-            background-color: #ffffff;
-            color: #1a1a1a;
-            border-color: #ffffff;
+
+        .btn .handle {
+            font-size: 0.75rem;
+            color: rgba(255,255,255,0.5);
         }
-        .name {
-            display: block;
-            margin-top: 20px;
-            font-weight: 300;
-            letter-spacing: 2px;
-            color: #ccc;
-        }
-        /* Footer & Rechtliches */
+
         footer {
             padding: 30px;
             font-size: 11px;
-            color: #444;
+            color: rgba(255,255,255,0.4);
+            text-align: center;
             letter-spacing: 1px;
         }
-        footer a {
-            color: #666;
-            text-decoration: none;
-            margin: 0 10px;
-            transition: color 0.3s;
-        }
-        footer a:hover {
-            color: #fff;
-        }
-        .legal-box {
+
+        footer a { color: inherit; text-decoration: none; }
+        footer a:hover { color: #fff; }
+
+        /* Impressum Modal */
+        #legal:target { display: flex; }
+        .legal-overlay {
             display: none;
-            margin-top: 40px;
-            line-height: 1.6;
-            border-top: 1px solid #333;
-            padding-top: 30px;
+            position: fixed;
+            top: 0; left: 0; width: 100%; height: 100%;
+            background: rgba(0,0,0,0.95);
+            justify-content: center;
+            align-items: center;
+            z-index: 100;
+        }
+        .legal-content {
+            background: #111;
+            padding: 40px;
+            border: 1px solid #333;
+            max-width: 600px;
+            width: 90%;
             text-align: left;
-            font-size: 13px;
-            color: #aaa;
-            max-width: 700px;
         }
-        .legal-box:target {
-            display: block;
-        }
-        h3 { color: #fff; font-weight: 400; margin-top: 25px; }
-        .close-link { color: #888; font-style: italic; display: block; margin-top: 20px; }
+        .legal-content h3 { margin-bottom: 20px; font-weight: 300; letter-spacing: 2px; }
+        .legal-content p { font-size: 0.9rem; color: #aaa; line-height: 1.6; margin-bottom: 10px; }
+        .close-btn { display: inline-block; margin-top: 20px; color: #fff; text-decoration: none; border-bottom: 1px solid #fff; padding-bottom: 2px; }
     </style>
 </head>
 <body>
+
+    <div class="background-image"></div>
 
     <div class="container">
         <h1>Kuklinski</h1>
         <p class="subtitle">Fotografie & Perspektiven</p>
 
         <div class="links">
-            <div class="profile">
-                <a href="https://www.instagram.com/juergen.kuklinski.fotografie" target="_blank" class="insta-button">
-                    INSTAGRAM
-                </a>
+            <a href="https://www.instagram.com/juergen.kuklinski.fotografie" target="_blank" class="btn">
+                <i class="fab fa-instagram"></i>
                 <span class="name">Jürgen Kuklinski</span>
-            </div>
+                <span class="handle">@juergen.kuklinski.fotografie</span>
+            </a>
 
-            <div class="profile">
-                <a href="https://www.instagram.com/corina.kuklinski.fotografie" target="_blank" class="insta-button">
-                    INSTAGRAM
-                </a>
+            <a href="https://www.instagram.com/corina.kuklinski.fotografie" target="_blank" class="btn">
+                <i class="fab fa-instagram"></i>
                 <span class="name">Corina Kuklinski</span>
-            </div>
+                <span class="handle">@corina.kuklinski.fotografie</span>
+            </a>
         </div>
+    </div>
 
-        <div id="legal" class="legal-box">
+    <footer>
+        <a href="#legal">IMPRESSUM & DATENSCHUTZ</a> | &copy; 2026 KUKLINSKI
+    </footer>
+
+    <div id="legal" class="legal-overlay">
+        <div class="legal-content">
             <h3>Impressum</h3>
             <p>
                 Angaben gemäß § 5 TMG:<br><br>
@@ -138,7 +178,6 @@
                 70469 Stuttgart<br><br>
                 <strong>Kontakt:</strong><br>
                 E-Mail: juergen@kuklinski.de<br>
-                Telefon: +49 151 29080277 <br>
                 <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
                 Jürgen & Corina Kuklinski<br>
             </p>
@@ -156,15 +195,9 @@
                 <strong>3. Externe Links (Instagram)</strong><br>
                 Sobald Sie auf die Instagram-Buttons klicken, verlassen Sie unsere Website. Instagram (Meta Platforms Ireland Limited) erhebt dann eigene Daten. Wir haben keinen Einfluss auf die Datenverarbeitung durch Instagram.
             </p>
-            
-            <a href="#" class="close-link">× Bereich schließen</a>
+            <a href="#" class="close-btn">Schließen</a>
         </div>
     </div>
-
-    <footer>
-        &copy; 2026 Kuklinski Fotografie | 
-        <a href="#legal">Impressum & Datenschutz</a>
-    </footer>
 
 </body>
 </html>
