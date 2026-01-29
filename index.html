@@ -4,6 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Kuklinski Fotografie</title>
+    <link rel="icon" type="image/png" href="logo.png">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
@@ -19,13 +20,17 @@
             text-align: center;
         }
 
-        /* Hintergrundbild */
-        .background-image {
+        /* Hintergrundbild-Container */
+        #dynamic-background {
             position: fixed;
             top: 0; left: 0; width: 100%; height: 100%;
-            background: url('hintergrund.jpg') no-repeat center center/cover;
-            filter: brightness(30%) blur(3px);
+            background-color: #000;
+            background-position: center center;
+            background-size: cover;
+            background-repeat: no-repeat;
+            filter: brightness(35%) blur(2px);
             z-index: -1;
+            transition: background-image 0.5s ease-in-out;
             transform: scale(1.05);
         }
 
@@ -36,25 +41,22 @@
             justify-content: center;
             max-width: 800px;
             padding: 60px 20px;
-            animation: fadeIn 1.2s ease-out;
+            animation: fadeIn 1.5s ease-out;
         }
 
-        @keyframes fadeIn {
-            from { opacity: 0; }
-            to { opacity: 1; }
-        }
+        @keyframes fadeIn { from { opacity: 0; } to { opacity: 1; } }
 
         h1 {
             font-weight: 200;
-            letter-spacing: 10px;
+            letter-spacing: 12px;
             text-transform: uppercase;
             font-size: clamp(1.8rem, 7vw, 3.5rem);
             margin-bottom: 5px;
         }
 
         .subtitle {
-            color: rgba(255,255,255,0.5);
-            letter-spacing: 4px;
+            color: rgba(255,255,255,0.6);
+            letter-spacing: 5px;
             margin-bottom: 50px;
             font-size: 0.8rem;
             text-transform: uppercase;
@@ -85,50 +87,37 @@
 
         .btn:hover {
             border-color: rgba(255,255,255,0.6);
-            background: rgba(255,255,255,0.1);
+            background: rgba(255,255,255,0.15);
+            transform: translateY(-5px);
         }
 
         .btn i { font-size: 1.8rem; }
         .btn .name { font-weight: 500; letter-spacing: 1px; font-size: 0.9rem; }
 
-        /* Impressum Bereich (wie in Version 1) */
         .legal-content {
             display: none;
             margin-top: 30px;
             padding: 30px;
-            background: rgba(0,0,0,0.6);
-            border-top: 1px solid rgba(255,255,255,0.1);
+            background: rgba(0,0,0,0.8);
+            border: 1px solid rgba(255,255,255,0.1);
             text-align: left;
             font-size: 13px;
             line-height: 1.6;
-            color: #aaa;
+            color: #ccc;
         }
 
-        .legal-content:target {
-            display: block;
-        }
-
+        .legal-content:target { display: block; }
         .legal-content h3 { color: #fff; margin-bottom: 10px; font-weight: 400; }
-        .close-link { color: #fff; text-decoration: none; display: block; margin-top: 15px; font-style: italic; }
-		 /* E-Mail Link Style */
-        .email-link {
-            color: #fff;
-            text-decoration: underline;
-            text-underline-offset: 3px;
-        }
+        .email-link { color: #fff; text-decoration: underline; text-underline-offset: 3px; }
+        .close-link { color: #fff; text-decoration: none; display: block; margin-top: 20px; font-style: italic; border: 1px solid rgba(255,255,255,0.3); padding: 5px 10px; width: fit-content; }
 
-        footer {
-            padding: 40px;
-            font-size: 11px;
-            color: rgba(255,255,255,0.3);
-        }
-
+        footer { padding: 40px; font-size: 11px; color: rgba(255,255,255,0.4); }
         footer a { color: inherit; text-decoration: none; }
     </style>
 </head>
 <body>
 
-    <div class="background-image"></div>
+    <div id="dynamic-background"></div>
 
     <div class="container">
         <h1>Kuklinski</h1>
@@ -149,29 +138,14 @@
         <div id="legal" class="legal-content">
             <h3>Impressum</h3>
             <p>
-                Angaben gemäß § 5 TMG:<br><br>
                 Jürgen & Corina Kuklinski<br>
-                Rhönstr. 21<br>
-                70469 Stuttgart<br><br>
+                Rhönstr. 21, 70469 Stuttgart<br><br>
                 <strong>Kontakt:</strong><br>
-				E-Mail: <a href="mailto:juergen@kuklinski.de" class="email-link">juergen@kuklinski.de</a><br><br>
-                <strong>Verantwortlich für den Inhalt nach § 55 Abs. 2 RStV:</strong><br>
-                Jürgen & Corina Kuklinski<br><br>
+                E-Mail: <a href="mailto:juergen@kuklinski.de" class="email-link">juergen@kuklinski.de</a>
             </p>
-
-            <h3>Datenschutzerklärung</h3>
-            <p>
-                <strong>1. Datenschutz auf einen Blick</strong><br>
-                Diese Website dient lediglich als Landingpage mit Verlinkungen zu unseren Instagram-Profilen. Wir selbst erheben, speichern oder verarbeiten auf dieser Website keine personenbezogenen Daten von Ihnen.
-            </p>
-            <p>
-                <strong>2. Hosting</strong><br>
-                Diese Website wird bei einem externen Dienstleister gehostet (Hoster). Personenbezogene Daten (wie IP-Adressen), die beim Aufruf der Seite automatisch durch den Server erfasst werden, liegen im Verantwortungsbereich des Hosters.
-            </p>
-            <p>
-                <strong>3. Externe Links (Instagram)</strong><br>
-                Sobald Sie auf die Instagram-Buttons klicken, verlassen Sie unsere Website. Instagram (Meta Platforms Ireland Limited) erhebt dann eigene Daten. Wir haben keinen Einfluss auf die Datenverarbeitung durch Instagram.
-            </p>
+            <br>
+            <h3>Datenschutz</h3>
+            <p>Diese Website dient rein zur Verlinkung unserer Profile. Es werden keine Nutzerdaten erhoben.</p>
             <a href="#" class="close-link">× Bereich schließen</a>
         </div>
     </div>
@@ -179,6 +153,19 @@
     <footer>
         <a href="#legal">Impressum & Datenschutz</a> | &copy; 2026 KUKLINSKI
     </footer>
+
+    <script>
+        window.onload = function() {
+            // Liste der Bilder (bg1.jpg bis bg10.jpg)
+            const images = ['bg1.jpg', 'bg2.jpg', 'bg3.jpg', 'bg4.jpg', 'bg5.jpg', 'bg6.jpg', 'bg7.jpg', 'bg8.jpg', 'bg9.jpg', 'bg10.jpg', 'bg11.jpg', 'bg12.jpg', 'bg13.jpg'];
+            
+            // Zufällige Auswahl
+            const randomImage = images[Math.floor(Math.random() * images.length)];
+            
+            // Hintergrund setzen
+            document.getElementById('dynamic-background').style.backgroundImage = 'url(' + randomImage + ')';
+        };
+    </script>
 
 </body>
 </html>
