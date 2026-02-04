@@ -173,16 +173,36 @@
         <a href="#legal">Impressum & Datenschutz</a> | &copy; 2026 KUKLINSKI
     </footer>
 
-    <script>
-        window.onload = function() {
-            // Liste eurer 10 Bilder
-            const images = ['bg1.jpeg', 'bg2.jpeg', 'bg3.jpeg', 'bg4.jpeg', 'bg5.jpeg', 'bg6.jpeg', 'bg7.jpeg', 'bg8.jpeg', 'bg9.jpeg', 'bg10.jpeg', 'bg11.jpeg', 'bg12.jpeg', 'bg13.jpeg', 'bg14.jpeg', 'bg15.jpeg', 'bg16.jpeg', 'bg17.jpeg'];
-            const randomImage = images[Math.floor(Math.random() * images.length)];
-            document.getElementById('dynamic-background').style.backgroundImage = 'url(' + randomImage + ')';
-        };
-    </script>
+<script>
+    window.onload = function() {
+        // Deine Liste der 17 Bilder
+        const allImages = ['bg1.jpeg', 'bg2.jpeg', 'bg3.jpeg', 'bg4.jpeg', 'bg5.jpeg', 'bg6.jpeg', 'bg7.jpeg', 'bg8.jpeg', 'bg9.jpeg', 'bg10.jpeg', 'bg11.jpeg', 'bg12.jpeg', 'bg13.jpeg', 'bg14.jpeg', 'bg15.jpeg', 'bg16.jpeg', 'bg17.jpeg'];
+        
+        // Holen der bereits gezeigten Bilder aus dem Kurzzeit-Speicher des Browsers
+        let shownImages = JSON.parse(sessionStorage.getItem('shownImages')) || [];
+
+        // Wenn alle Bilder einmal dran waren, Liste zurücksetzen
+        if (shownImages.length >= allImages.length) {
+            shownImages = [];
+        }
+
+        // Bilder filtern, die noch nicht gezeigt wurden
+        const remainingImages = allImages.filter(img => !shownImages.includes(img));
+        
+        // Zufälliges Bild aus den verbleibenden wählen
+        const randomImage = remainingImages[Math.floor(Math.random() * remainingImages.length)];
+        
+        // Das gewählte Bild anzeigen
+        document.getElementById('dynamic-background').style.backgroundImage = 'url(' + randomImage + ')';
+        
+        // Das gewählte Bild zur Liste der gezeigten hinzufügen und speichern
+        shownImages.push(randomImage);
+        sessionStorage.setItem('shownImages', JSON.stringify(shownImages));
+    };
+</script>
 </body>
 </html>
+
 
 
 
